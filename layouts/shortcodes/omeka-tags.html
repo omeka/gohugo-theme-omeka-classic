@@ -1,0 +1,5 @@
+{{ $page := site.GetPage (.Get "page") }}
+{{- range $k, $_ := $page.Params.tags -}}
+{{ if $k }}, {{ end }}
+<a href="{{ $.Site.BaseURL }}tags/{{ urlize . }}">{{ . }}</a>
+{{- end -}}
