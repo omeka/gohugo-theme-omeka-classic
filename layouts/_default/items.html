@@ -20,6 +20,19 @@
                 </a>
             </div>
             {{ end }}
+
+            {{ with .Params.description }}
+            <div class="item-description">{{ . }}</div>
+            {{ end }}
+
+            {{ if .Params.tags }}
+            <div class="tags">
+                {{- range $k, $_ := .Params.tags -}}
+                {{ if $k }}, {{ end }}
+                <a href="{{ $.Site.BaseURL }}tags/{{ urlize . }}">{{ . }}</a>
+                {{- end -}}
+            </div>
+            {{ end }}
         </div>
     </div>
 {{ end }}
