@@ -1,9 +1,9 @@
 {{ define "main" }}
     <h2>{{ .Title }}</h2>
-    <h3>{{ .CurrentSection.Params.titleSingular }}</h3>
     {{ range sort (.Resources.Match "blocks/*.md") "File.Path" }}
-    <div class="{{ printf "resource-page-block-%s" .Params.layout }}">
-        {{ .Content }}
+    {{ with .Params.blockHeading }}<h3>{{ . }}</h3>{{ end }}
+    <div id="{{ printf "%s" .Params.id }}" class="element">
+        <div class="element-text">{{ .Content }}</div>
     </div>
     {{ end }}
     {{ .Content }}

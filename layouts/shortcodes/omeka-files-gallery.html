@@ -4,7 +4,19 @@
 {{ range $itemPage.Params.fileIDs }}
     {{ $filePage := site.GetPage (printf "files/%v" . ) }}
     {{ $fileResource := $filePage.Resources.GetMatch "file.*" }}
+    {{ $fileResourceType := $fileResource.ResourceType }}
     {{ $thumbnailResource := $filePage.Resources.Get "square_thumbnail.jpg" }}
+    {{ if not $thumbnailResource }}
+        {{ if eq $fileResourceType "audio" }}
+            {{ $thumbnailResource = resources.Get "thumbnails/fallback-audio.png" }}
+        {{ else if eq $fileResourceType "video" }}
+            {{ $thumbnailResource = resources.Get "thumbnails/fallback-video.png" }}
+        {{ else if eq $fileResourceType "image" }}
+            {{ $thumbnailResource = resources.Get "thumbnails/fallback-image.png" }}
+        {{ else }}
+            {{ $thumbnailResource = resources.Get "thumbnails/fallback-file.png" }}
+        {{ end }}
+    {{ end }}
     <div>
         <a href="{{ $fileResource.RelPermalink }}">
             {{ with $thumbnailResource }}<img src="{{ $thumbnailResource.RelPermalink }}">{{ end }}
