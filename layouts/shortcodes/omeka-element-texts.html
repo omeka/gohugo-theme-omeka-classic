@@ -1,0 +1,17 @@
+{{ $itemPage := site.GetPage (.Get "itemPage") }}
+{{ $elementTextsResource := $itemPage.Resources.Get "element_texts.json" }}
+{{ $elementTexts := unmarshal $elementTextsResource }}
+
+{{ range $elementSetName, $elements := $elementTexts }}
+<div class="element-set">
+    <h2>{{ $elementSetName }}</h2>
+    {{ range $elementName, $elementTexts := $elements }}
+    <div class="element">
+        <h3>{{ $elementName }}</h3>
+        {{ range $elementText := $elementTexts }}
+            <div class="element-text">{{ $elementText | safeHTML }}</div>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}
