@@ -1,0 +1,27 @@
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+{{ .Content }}
+<div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
+{{ range .Paginator.Pages }}
+    {{ $thumbnailResource := false }}
+    {{ if .Params.thumbnailSpec.page }}
+        {{ $thumbnailPage := site.GetPage (.Params.thumbnailSpec.page) }}
+        {{ $thumbnailResource = $thumbnailPage.Resources.GetMatch (printf "%s*" (.Params.thumbnailSpec.resource)) }}
+    {{ else }}
+        {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
+    {{ end }}
+    <div class="item hentry">
+        <h2><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></h2>
+        <div class="item-meta">
+            {{ if $thumbnailResource }}
+            <div class="item-img">
+                <a href="{{ .RelPermalink }}">
+                    <img src="{{ $thumbnailResource.RelPermalink }}">
+                </a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+{{ end }}
+<div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
+{{ end }}
