@@ -2,16 +2,18 @@
 {{ $elementTextsResource := $itemPage.Resources.Get "element_texts.json" }}
 {{ $elementTexts := unmarshal $elementTextsResource }}
 
-{{ range $elementSetName, $elements := $elementTexts }}
+{{ range $elementTexts }}
+{{ if .elements }}
 <div class="element-set">
-    <h2>{{ $elementSetName }}</h2>
-    {{ range $elementName, $elementTexts := $elements }}
+    <h2>{{ .name }}</h2>
+    {{ range .elements }}
     <div class="element">
-        <h3>{{ $elementName }}</h3>
-        {{ range $elementText := $elementTexts }}
-            <div class="element-text">{{ $elementText | safeHTML }}</div>
+        <h3>{{ .name }}</h3>
+        {{ range .texts }}
+        <div class="element-text">{{ . | safeHTML }}</div>
         {{ end }}
     </div>
     {{ end }}
 </div>
+{{ end }}
 {{ end }}
