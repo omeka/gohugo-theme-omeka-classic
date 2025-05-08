@@ -1,8 +1,8 @@
 {{ $itemPage := site.GetPage (.Get "itemPage") }}
-{{ with $itemPage.Params.fileIDs }}
+{{ with $itemPage.Params.files }}
 <div id="item-images">
-{{ range $itemPage.Params.fileIDs }}
-    {{ $filePage := site.GetPage (printf "files/%v" . ) }}
+{{ range $itemPage.Params.files }}
+    {{ $filePage := site.GetPage (printf "files/%v" .id ) }}
     {{ $fileResource := $filePage.Resources.GetMatch "file.*" }}
     {{ $fileResourceType := $fileResource.ResourceType }}
     {{ $thumbnailResource := $filePage.Resources.Get "square_thumbnail.jpg" }}
