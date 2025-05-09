@@ -1,5 +1,5 @@
-{{ $itemPage := site.GetPage (.Get "itemPage") }}
-{{ $elementTextsResource := $itemPage.Resources.Get "element_texts.json" }}
+{{ $page := site.GetPage (.Get "page") }}
+{{ $elementTextsResource := $page.Resources.Get "element_texts.json" }}
 {{ $elementTexts := unmarshal $elementTextsResource }}
 
 {{ range $elementTexts }}
