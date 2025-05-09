@@ -8,5 +8,20 @@
         {{ with .Params.id }}</div>{{ end }}
     {{ with .Params.id }}</div>{{ end }}
     {{ end }}
+    {{ if eq .Type "collections" }}
+    <h2>Items</h2>
+    <ul>
+        {{ range where (where site.RegularPages "Type" "items") ".Params.collectionID" "eq" .Params.collectionID }}
+        {{ $thumbnailResource := false }}
+        {{ if .Params.thumbnailSpec.page }}
+            {{ $thumbnailPage := site.GetPage (.Params.thumbnailSpec.page) }}
+            {{ $thumbnailResource = $thumbnailPage.Resources.GetMatch (printf "%s*" (.Params.thumbnailSpec.resource)) }}
+        {{ else }}
+            {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
+        {{ end }}
+        <li><img src="{{ $thumbnailResource.RelPermalink }}"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+    </ul>
+    {{ end }}
     {{ .Content }}
 {{ end }}
