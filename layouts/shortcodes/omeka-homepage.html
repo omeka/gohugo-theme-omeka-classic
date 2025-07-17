@@ -18,7 +18,7 @@
     <div class="item record">
         <div class="title">
             <a class="download-file" href="{{ $linkResource.RelPermalink }}">
-                <img src="{{ $imgResource.RelPermalink }}" alt="">
+                {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
                 {{ $linkResource.Params.title }}
             </a>
         </div>
@@ -43,7 +43,7 @@
     <div class="collection record">
         <div class="title">
             <a class="download-file" href="{{ $linkResource.RelPermalink }}">
-                <img src="{{ $imgResource.RelPermalink }}" alt="">
+                {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
                 {{ $linkResource.Params.title }}
             </a>
         </div>
@@ -70,7 +70,7 @@
     <div class="item record">
         <div class="title">
             <a class="download-file" href="{{ $linkResource.RelPermalink }}">
-                <img src="{{ $imgResource.RelPermalink }}" alt="">
+                {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
                 {{ $linkResource.Params.title }}
             </a>
         </div>

@@ -19,7 +19,12 @@
         {{ else }}
             {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
         {{ end }}
-        <li><img src="{{ $thumbnailResource.RelPermalink }}"><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        <li>
+            <a href="{{ .RelPermalink }}">
+                {{ with $thumbnailResource }}<img src="{{ $thumbnailResource.RelPermalink }}">{{ end }}
+                {{ .Title }}
+            </a>
+        </li>
         {{ end }}
     </ul>
     {{ end }}
