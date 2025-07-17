@@ -10,15 +10,17 @@
     {{ else }}
         {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
     {{ end }}
-    <div class="collection">
-        <h2><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></h2>
-        {{ if $thumbnailResource }}
-        <a href="{{ .RelPermalink }}">
-            <img src="{{ $thumbnailResource.RelPermalink }}">
-        </a>
-        {{ end }}
+    <div class="collection record"> 
+        <div class="title">
+            <a href="{{ .RelPermalink }}">
+                {{.LinkTitle }}
+                {{ if $thumbnailResource }}
+                    <img src="{{ $thumbnailResource.RelPermalink }}" alt="">
+                {{ end }}
+            </a>
+        </div>
         {{ with .Params.description }}
-        <div class="collection-description">{{ . }}</div>
+        <div class="description">{{ . }}</div>
         {{ end }}
     </div>
 {{ end }}

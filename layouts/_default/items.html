@@ -10,30 +10,27 @@
     {{ else }}
         {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
     {{ end }}
-    <div class="item hentry">
-        <h2><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></h2>
-        <div class="item-meta">
-            {{ if $thumbnailResource }}
-            <div class="item-img">
-                <a href="{{ .RelPermalink }}">
-                    <img src="{{ $thumbnailResource.RelPermalink }}">
-                </a>
-            </div>
-            {{ end }}
-
-            {{ with .Params.description }}
-            <div class="item-description">{{ . }}</div>
-            {{ end }}
-
-            {{ if .Params.tags }}
-            <div class="tags">
-                {{- range $k, $_ := .Params.tags -}}
-                {{ if $k }}, {{ end }}
-                <a href="{{ $.Site.BaseURL }}tags/{{ urlize . }}">{{ . }}</a>
-                {{- end -}}
-            </div>
-            {{ end }}
+    <div class="item record">
+        <div class="title">
+            <a href="{{ .RelPermalink }}">
+                {{.LinkTitle }}
+                {{ if $thumbnailResource }}
+                <img src="{{ $thumbnailResource.RelPermalink }}" alt="">
+                {{ end }}
+            </a>
         </div>
+        {{ with .Params.description }}
+        <p class="item-description">{{ . }}</p>
+        {{ end }}
+
+        {{ if .Params.tags }}
+        <div class="tags">
+            {{- range $k, $_ := .Params.tags -}}
+            {{ if $k }}, {{ end }}
+            <a href="{{ $.Site.BaseURL }}tags/{{ urlize . }}">{{ . }}</a>
+            {{- end -}}
+        </div>
+        {{ end }}
     </div>
 {{ end }}
 <div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
