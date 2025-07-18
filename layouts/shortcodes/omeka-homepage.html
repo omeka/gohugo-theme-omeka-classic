@@ -4,78 +4,82 @@
 <p>{{ $params.homepageText | safeHTML }}</p>
 {{ end }}
 
-{{ with $params.featuredItem }}
+{{ $featuredItem := index (where (where .Site.RegularPages "Type" "items") "Params.featured" "eq" 1) 0 }}
+{{ with $featuredItem }}
 <div id="featured-item">
     <h2>Featured Item</h2>
-    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
     {{ $imgResource := false }}
-    {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
-        {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+    {{ $thumbnailSpec := .Params.thumbnailSpec }}
+    {{ if and ($thumbnailSpec.page) ($thumbnailSpec.resource) }}
+        {{ $imgPage := site.GetPage ($thumbnailSpec.page) }}
         {{ $imgResource = $imgPage.Resources.GetMatch "fullsize*" }}
-    {{ else if (.thumbnailSpec.resource) }}
-        {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+    {{ else if ($thumbnailSpec.resource) }}
+        {{ $imgResource = resources.Get ($thumbnailSpec.resource) }}
     {{ end }}
     <div class="item record">
         <div class="title">
-            <a class="download-file" href="{{ $linkResource.RelPermalink }}">
+            <a class="download-file" href="{{ .RelPermalink }}">
                 {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
-                {{ $linkResource.Params.title }}
+                {{ .Params.title }}
             </a>
         </div>
         <div class="description">
-            {{ $linkResource.Params.description }}
+            {{ .Params.description }}
         </div>
     </div>
 </div>
 {{ end }}
 
-{{ with $params.featuredCollection }}
+{{ $featuredCollection := index (where (where .Site.RegularPages "Type" "collections") "Params.featured" "eq" 1) 0 }}
+{{ with $featuredCollection }}
 <div id="featured-collection">
     <h2>Featured Collection</h2>
-    {{ $linkResource := site.GetPage (printf "collections/%s" (string .collectionID)) }}
     {{ $imgResource := false }}
-    {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
-        {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+    {{ $thumbnailSpec := .Params.thumbnailSpec }}
+    {{ if and ($thumbnailSpec.page) ($thumbnailSpec.resource) }}
+        {{ $imgPage := site.GetPage ($thumbnailSpec.page) }}
         {{ $imgResource = $imgPage.Resources.GetMatch "fullsize*" }}
-    {{ else if (.thumbnailSpec.resource) }}
-        {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+    {{ else if ($thumbnailSpec.resource) }}
+        {{ $imgResource = resources.Get ($thumbnailSpec.resource) }}
     {{ end }}
     <div class="collection record">
         <div class="title">
-            <a class="download-file" href="{{ $linkResource.RelPermalink }}">
+            <a class="download-file" href="{{ .RelPermalink }}">
                 {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
-                {{ $linkResource.Params.title }}
+                {{ .Params.title }}
             </a>
         </div>
         <div class="description">
-            {{ $linkResource.Params.description }}
+            {{ .Params.description }}
         </div>
     </div>
 </div>
 {{ end }}
 
-{{ if $params.recentItems }}
+{{ $recentItems := first 3 (where .Site.RegularPages "Type" "items") }}
+{{ if $recentItems }}
 <div id="recent-items">
     <h2>Recently Added Items</h2>
-    {{ range $params.recentItems }}
+    {{ range $recentItems }}
 
-    {{ $linkResource := site.GetPage (printf "items/%s" (string .itemID)) }}
     {{ $imgResource := false }}
-    {{ if and (.thumbnailSpec.page) (.thumbnailSpec.resource) }}
-        {{ $imgPage := site.GetPage (.thumbnailSpec.page) }}
+    {{ $thumbnailSpec := .Params.thumbnailSpec }}
+    {{ if and ($thumbnailSpec.page) ($thumbnailSpec.resource) }}
+        {{ $imgPage := site.GetPage ($thumbnailSpec.page) }}
         {{ $imgResource = $imgPage.Resources.GetMatch "fullsize*" }}
-    {{ else if (.thumbnailSpec.resource) }}
-        {{ $imgResource = resources.Get (.thumbnailSpec.resource) }}
+    {{ else if ($thumbnailSpec.resource) }}
+        {{ $imgResource = resources.Get ($thumbnailSpec.resource) }}
     {{ end }}
+
     <div class="item record">
         <div class="title">
-            <a class="download-file" href="{{ $linkResource.RelPermalink }}">
+            <a class="download-file" href="{{ .RelPermalink }}">
                 {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
-                {{ $linkResource.Params.title }}
+                {{ .Params.title }}
             </a>
         </div>
         <div class="description">
-            {{ $linkResource.Params.description }}
+            {{ .Params.description }}
         </div>
     </div>
 
