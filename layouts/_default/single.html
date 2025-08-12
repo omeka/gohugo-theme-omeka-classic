@@ -9,8 +9,8 @@
     {{ with .Params.id }}</div>{{ end }}
     {{ end }}
     {{ if eq .Type "collections" }}
-    <h2>Items</h2>
-    <ul>
+    <div id="collection-items">
+        <h2>Collection Items</h2>
         {{ range where (where site.RegularPages "Type" "items") ".Params.collectionID" "eq" .Params.collectionID }}
         {{ $thumbnailResource := false }}
         {{ if .Params.thumbnailSpec.page }}
@@ -19,14 +19,16 @@
         {{ else }}
             {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
         {{ end }}
-        <li>
-            <a href="{{ .RelPermalink }}">
-                {{ with $thumbnailResource }}<img src="{{ $thumbnailResource.RelPermalink }}">{{ end }}
-                {{ .Title }}
-            </a>
+        <div class="item record">
+            <div class="title">
+                <a href="{{ .RelPermalink }}">
+                    {{ with $thumbnailResource }}<img src="{{ $thumbnailResource.RelPermalink }}">{{ end }}
+                    {{ .Title }}
+                </a>
+            </div>
         </li>
         {{ end }}
-    </ul>
+    </div>
     {{ end }}
     {{ .Content }}
 {{ end }}
