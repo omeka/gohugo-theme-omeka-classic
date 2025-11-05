@@ -65,7 +65,7 @@
 {{ $recentItems := first 3 (where .Site.RegularPages "Type" "items") }}
 {{ if $recentItems }}
 <div id="recent-items">
-    <h2>Recently Added Items</h2>
+    <h2 class="recent-title">Recently Added Items</h2>
     {{ range $recentItems }}
 
     {{ $imgResource := false }}
