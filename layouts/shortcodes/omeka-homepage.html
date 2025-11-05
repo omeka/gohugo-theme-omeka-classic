@@ -80,7 +80,7 @@
     <div class="item record">
         <div class="title">
             <a class="download-file" href="{{ .RelPermalink }}">
-                {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" alt="">{{ end }}
+                {{ with $imgResource }}<img src="{{ $imgResource.RelPermalink }}" class="image" alt="">{{ end }}
                 {{ .Params.title }}
             </a>
         </div>
