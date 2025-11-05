@@ -4,9 +4,11 @@
 <p>{{ $params.homepageText | safeHTML }}</p>
 {{ end }}
 
-{{ with $params.featuredItem | $params.featuredCollection }}
+{{ $featuredItem := index (where (where .Site.RegularPages "Type" "items") "Params.featured" "eq" 1) 0 }}
+{{ $featuredCollection := index (where (where .Site.RegularPages "Type" "collections") "Params.featured" "eq" 1) 0 }}
+
+{{ if or $featuredItem $featuredCollection }}
 <div id="featured-records">
-    {{ $featuredItem := index (where (where .Site.RegularPages "Type" "items") "Params.featured" "eq" 1) 0 }}
     {{ with $featuredItem }}
     <div id="featured-item">
         <h2>Featured Item</h2>
@@ -32,7 +34,6 @@
     </div>
     {{ end }}
 
-    {{ $featuredCollection := index (where (where .Site.RegularPages "Type" "collections") "Params.featured" "eq" 1) 0 }}
     {{ with $featuredCollection }}
     <div id="featured-collection">
         <h2>Featured Collection</h2>
