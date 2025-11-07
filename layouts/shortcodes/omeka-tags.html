@@ -1,5 +1,5 @@
 {{ $itemPage := site.GetPage (.Get "itemPage") }}
 {{- range $k, $_ := $itemPage.Params.tags -}}
 {{ if $k }}, {{ end }}
-<a href="{{ $.Site.BaseURL }}tags/{{ urlize . }}">{{ . }}</a>
+<a href="{{ $.Site.BaseURL }}tags/{{ replace . " " "-" | urlize }}">{{ . }}</a>
 {{- end -}}
