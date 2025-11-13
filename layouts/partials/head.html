@@ -7,6 +7,7 @@
     <meta http-equiv="refresh" content="0;url={{ $homepage | relURL }}" />
 {{ end }}
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="{{ "js/main.js" | relURL }}"></script>
 
 <!--Include scripts added by front matter -->
@@ -21,6 +22,7 @@
 {{ end }}
 
 <link href="{{ "css/omeka-defaults.css" | relURL }}" rel="stylesheet" />
+<link href="{{ "css/iconfonts.css" | relURL }}" rel="stylesheet" />
 
 <!--Include styles added by front matter -->
 {{ if .Params.css }}
