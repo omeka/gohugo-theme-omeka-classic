@@ -1,7 +1,7 @@
 {{ define "main" }}
 <h2>{{ .Title }}</h2>
 {{ .Content }}
-<div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
+<div class=”browse-controls”>{{- partial "pagination.html" . -}}</div>
 {{ range .Paginator.Pages }}
     {{ $thumbnailResource := false }}
     {{ if .Params.thumbnailSpec.page }}
@@ -10,28 +10,19 @@
     {{ else }}
         {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
     {{ end }}
-    <div class="item record">
+    <div class="collection record">
         <div class="title">
             <a href="{{ .RelPermalink }}">
                 {{.LinkTitle }}
                 {{ if $thumbnailResource }}
-                <img src="{{ $thumbnailResource.RelPermalink }}" class="image" alt="">
+                    <img src="{{ $thumbnailResource.RelPermalink }}" class="image" alt="">
                 {{ end }}
             </a>
         </div>
         {{ with .Params.description }}
-        <p class="item-description">{{ . }}</p>
-        {{ end }}
-
-        {{ if .Params.tags }}
-        <div class="tags">
-            {{- range $k, $_ := .Params.tags -}}
-            {{ if $k }}, {{ end }}
-            <a href="{{ $.Site.BaseURL }}tags/{{ urlize . }}">{{ . }}</a>
-            {{- end -}}
-        </div>
+        <div class="description">{{ . }}</div>
         {{ end }}
     </div>
 {{ end }}
-<div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
+<div class=”browse-controls”>{{- partial "pagination.html" . -}}</div>
 {{ end }}

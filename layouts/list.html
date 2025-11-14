@@ -1,11 +1,11 @@
 {{ define "main" }}
 <h2>{{ .Title }}</h2>
 {{ .Content }}
-<div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
+<div class=”browse-controls”>{{- partial "pagination.html" . -}}</div>
 <ul>
     {{ range .Paginator.Pages }}
     <li><a href="{{ .RelPermalink }}">{{.LinkTitle }}</a></li>
     {{ end }}
 </ul>
-<div class=”browse-controls”>{{- template "_internal/pagination.html" . -}}</div>
+<div class=”browse-controls”>{{- partial "pagination.html" . -}}</div>
 {{ end }}
