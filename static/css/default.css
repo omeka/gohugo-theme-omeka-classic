@@ -365,8 +365,7 @@ th {
     --gray:#f7f7f7;
     --white: #fff;
     --black: #000;
-    --border-color: #ccc;
-    --thumbnail-size: 100px; }
+    --border-color: #ccc; }
 
   * {
     box-sizing: border-box; }
@@ -486,7 +485,6 @@ th {
   .permalink img,
   .image {
     float: right;
-    margin-left: 1em;
     display: block;
     border-bottom: 0;
     overflow: visible; }
@@ -503,15 +501,6 @@ th {
     padding: 0.1875em;
     background-color: var(--white); }
 
-  .record img,
-  .browse .item-img,
-  .browse .image,
-  .browse #content .item img,
-  .browse .item #content img,
-  .browse .image img,
-  #recent-items img.image {
-    height: var(--thumbnail-size); }
-
   #content img {
     max-width: 100%;
     max-height: 100%; }
@@ -519,7 +508,7 @@ th {
   .collection .image,
   .exhibit .image {
     box-shadow: -3px -3px 0 rgba(0, 0, 0, 0.2), -6px -6px 0 rgba(0, 0, 0, 0.1);
-    margin-left: calc(1em + 6px);
+    margin-left: 6px;
     margin-top: 6px;
     max-width: calc(100% - 6px) !important; }
 
@@ -924,7 +913,8 @@ th {
   /* @group ----- Header ----- */
   header {
     background-size: auto !important;
-    background-position-x: right !important; }
+    background-position-x: right !important;
+    margin-bottom: 1em; }
 
   #site-title {
     font-size: 32px;
@@ -1223,26 +1213,28 @@ th {
   .subtitle {
     display: none; }
 
-  #featured-records .record,
+  #home #featured-records .record,
   #featured-item,
   #featured-collection,
   #featured-exhibit {
     margin-bottom: 1em;
-    overflow: auto; }
-    #featured-records .record .subtitle,
+    overflow: auto;
+    width: 50%;
+    float: left; }
+    #home #featured-records .record .subtitle,
     #featured-item .subtitle,
     #featured-collection .subtitle,
     #featured-exhibit .subtitle {
       display: block;
       font-weight: none;
       font-size: 16px; }
-    #featured-records .record .title,
+    #home #featured-records .record .title,
     #featured-item .title,
     #featured-collection .title,
     #featured-exhibit .title {
       margin-bottom: 0.5em;
       overflow: visible; }
-    #featured-records .record img,
+    #home #featured-records .record img,
     #featured-item img,
     #featured-collection img,
     #featured-exhibit img {
@@ -1282,7 +1274,7 @@ th {
 
   #recent-items .image {
     float: right;
-    margin: 0 0 0 1em; }
+    margin: 0 0 0 d 1em; }
 
   #simple-search {
     width: 100%;
@@ -1450,12 +1442,12 @@ th {
     padding: 0.25em;
     border-bottom: 0; }
 
-  .browse .record {
+  .browse .item {
     overflow: hidden;
     border-top: 1px solid var(--border-color);
     padding: 1em 0;
     width: 100%; }
-    .browse .record:last-of-type {
+    .browse .item:last-of-type {
       border-bottom: 0; }
   .browse .permalink img {
     margin: 0 0 1em 1em; }
@@ -1675,7 +1667,7 @@ th {
   #primary-nav {
     width: 25%;
     float: left;
-    padding: 1em;
+    padding-right: 1em;
     margin-left: 0; }
 
   #primary-nav ul.navigation .sub-nav-toggle:focus {
@@ -1719,13 +1711,13 @@ th {
     margin-bottom: 1em; }
 
   /* ----- Home ----- */
-  #featured-records,
+  #home #featured-records,
   #recent-items {
     display: grid;
     grid-gap: 1em 2em;
     grid-template-columns: 1fr 1fr; }
 
-  #featured-records .record {
+  #home #featured-records .record {
     padding: 0;
     margin: 0; }
 
