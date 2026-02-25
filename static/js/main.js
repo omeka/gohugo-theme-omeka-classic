@@ -1,33 +1,8 @@
-if (!Omeka) {
-    var Omeka = {};
-}
-
 if (!ThanksRoy) {
     var ThanksRoy = {};
 }
 
 (function ($) {
-    Omeka.showAdvancedForm = function () {
-        $('#search-form').on('click', '.show-advanced', function() {
-            var advanced_toggle = $(this);
-            advanced_toggle.toggleClass('open');
-            if (advanced_toggle.hasClass('open')) {
-                advanced_toggle.attr('aria-expanded', true);
-            } else {
-                advanced_toggle.attr('aria-expanded', false);
-            }
-        });
-    };
-
-    Omeka.skipNav = function () {
-        $("#skipnav").click(function() {
-            $("#content").attr("tabindex", -1).focus();
-        });
-
-        $("#content").on("blur focusout", function () {
-            $(this).removeAttr("tabindex");
-        });
-    };
 
     ThanksRoy.mobileMenu = function() {
         var subNavId = 1;
@@ -64,11 +39,4 @@ if (!ThanksRoy) {
         });
     };
 
-    $(document).ready(function() {
-        var mobileMenu = $('<button type="button" class="menu-button button" aria-expanded="false" aria-controls="primary-nav">Menu <span class="menu-icon" aria-hidden="true"></span></button>');
-        $('#primary-nav').before(mobileMenu);
-        Omeka.showAdvancedForm();
-        Omeka.skipNav();
-        ThanksRoy.mobileMenu();
-    });
 })(jQuery);
