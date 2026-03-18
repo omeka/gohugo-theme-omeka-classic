@@ -1,5 +1,5 @@
 {{ define "main" }}
-  <h2>{{ .Title }}</h2>
+  <h1>{{ .Title }}</h1>
   {{ .Content }}
   {{ range .Data.Terms.ByCount }}
     <h3><a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> ({{ .Count }})</h3>

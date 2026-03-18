@@ -1,5 +1,5 @@
 {{ define "main" }}
-    <h2>{{ .Title }}</h2>
+    <h1>{{ .Title }}</h1>
     {{ range sort (.Resources.Match "blocks/*.md") "File.Path" }}
     {{ with .Params.id }}<div id="{{ . }}" class="element">{{ end }}
         {{ with .Params.blockHeading }}<h3>{{ . }}</h3>{{ end }}

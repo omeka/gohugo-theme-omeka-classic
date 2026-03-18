@@ -1,5 +1,5 @@
 {{ define "main" }}
-<h2>{{ .Title }}</h2>
+<h1>{{ .Title }}</h1>
 {{ .Content }}
 <div class=”browse-controls”>{{- partial "pagination.html" . -}}</div>
 {{ range .Paginator.Pages }}
