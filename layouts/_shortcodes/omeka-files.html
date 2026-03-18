@@ -8,7 +8,7 @@
     <div class="item-file">
         {{ if eq .renderer "image" }}
         <a href="{{ $fileResource.RelPermalink }}">
-            <img src="{{ $thumbnailResource.RelPermalink }}" alt="{{ .alt }}">
+            <img src="{{ $thumbnailResource.RelPermalink }}" alt="{{ $filePage.Params.alt }}">
         </a>
         {{ else if eq .renderer "audio" }}
         <audio src="{{ $fileResource.RelPermalink }}" width="200" height="20" controls>
