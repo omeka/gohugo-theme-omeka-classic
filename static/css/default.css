@@ -313,7 +313,13 @@ template {
     --white: #fff;
     --black: #000;
     --border-color: #ccc;
-    --thumbnail-size: 100px; }
+    --thumbnail-size: 100px;
+    --background-color: #FFFFFF;
+    --text-color: #393939;
+    --link-color: #6c6c6c;
+    --button-color: #000000;
+    --button-text-color: #FFFFFF;
+    --title-color: #000000; }
 
   * {
     box-sizing: border-box; }
@@ -957,28 +963,32 @@ template {
         border-bottom: 0; }
     #primary-nav ul.navigation .parent {
       position: relative; }
-    #primary-nav ul.navigation .sub-nav-toggle:after {
-      font-family: "Font Awesome 5 Free";
-      content: "\f055";
-      font-weight: 900;
-      font-size: 14px;
-      float: right;
-      transition-property: transform;
-      transition: .5s ease;
-      color: var(--text-color); }
-    #primary-nav ul.navigation .open .sub-nav-toggle:after {
-      transform: rotate(405deg); }
-    #primary-nav ul.navigation .sub-nav-toggle {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 2em;
-      width: 2em;
-      background-color: transparent; }
-      #primary-nav ul.navigation .sub-nav-toggle:after {
-        float: none;
-        text-align: center;
-        display: block; }
+
+  .sub-nav-toggle:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f055";
+    font-weight: 900;
+    font-size: 14px;
+    float: right;
+    transition-property: transform;
+    transition: .5s ease;
+    color: var(--text-color); }
+
+  .open .sub-nav-toggle:after {
+    transform: rotate(405deg); }
+
+  .sub-nav-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    margin: 0; }
+    .sub-nav-toggle:after {
+      float: none;
+      text-align: center;
+      display: block; }
 
   .secondary-nav {
     border-bottom: 1px solid var(--border-color);
@@ -1521,7 +1531,7 @@ template {
       margin-bottom: 0;
       position: relative;
       padding: 0.5em; }
-    #exhibit-pages > ul > li.parent:before, #exhibit-pages > ul > li.current:before,
+    #exhibit-pages > ul > li.open.parent:before,
     #exhibit-pages .active:before {
       content: "";
       height: 100%;
@@ -1541,10 +1551,18 @@ template {
       #exhibit-pages .active > *:not(a),
       #exhibit-pages .current > *:not(a) {
         font-weight: normal; }
-    #exhibit-pages > ul > li:not(.parent) ul {
+    #exhibit-pages > ul > li.parent ul {
       display: none; }
-    #exhibit-pages > ul > li.current ul {
-      display: block; }
+    #exhibit-pages > ul > li.parent.open ul {
+      display: block;
+      width: 100%; }
+    #exhibit-pages li.parent {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap; }
+    #exhibit-pages .sub-nav-toggle {
+      position: static;
+      margin-left: auto; }
 
   #exhibit-pages-heading {
     border: 1px solid var(--border-color);
@@ -1796,6 +1814,7 @@ template {
   #exhibit-pages-heading,
   #exhibit-pages {
     width: 25%;
-    display: inline-block; } }
+    float: right;
+    clear: right; } }
 
 /*# sourceMappingURL=default.css.map */
