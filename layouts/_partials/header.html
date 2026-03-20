@@ -1,4 +1,6 @@
 <div id="site-title">
     <a href="{{ relURL "" }}">{{ site.Title }}</a>
 </div>
+
+<button type="button" class="menu-button button" aria-expanded="false" aria-controls="primary-nav">Menu <span class="menu-icon" aria-hidden="true"></span></button>
 {{ partial "menu.html" (dict "menuID" "main" "page" . "id" "primary-nav") }}

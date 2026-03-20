@@ -12,7 +12,6 @@ Renders a menu for the given menu ID.
 {{- $id := .id }}
 
 {{- with index site.Menus $menuID }}
-  <button type="button" class="menu-button button" aria-expanded="false" aria-controls="{{ $id }}">Menu <span class="menu-icon" aria-hidden="true"></span></button>
   <nav id="{{ $id }}">
     <ul class="navigation">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
