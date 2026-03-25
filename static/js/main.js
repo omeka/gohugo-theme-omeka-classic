@@ -36,7 +36,7 @@ if (!ThanksRoy) {
         navElement.on('click', '.sub-nav-toggle', function() {
             let subnavToggle = $(this);
             subnavToggle.parent('.parent').toggleClass('open');
-            if (subnavToggle.attr('aria-expanded', 'false')) {
+            if (subnavToggle.attr('aria-expanded') == 'false') {
                 subnavToggle.attr('aria-expanded', 'true');
             } else {
                 subnavToggle.attr('aria-expanded', 'false');
