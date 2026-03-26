@@ -1,0 +1,26 @@
+{{ $collectionPage := site.GetPage (.Get "collectionPage") }}
+{{ with $collectionPage }}
+
+{{ $thumbnailResource := false }}
+{{ if .Params.thumbnailSpec.page }}
+    {{ $thumbnailPage := site.GetPage (.Params.thumbnailSpec.page) }}
+    {{ $thumbnailResource = $thumbnailPage.Resources.GetMatch (printf "%s*" (.Params.thumbnailSpec.resource)) }}
+{{ else }}
+    {{ $thumbnailResource = resources.Get (.Params.thumbnailSpec.resource) }}
+{{ end }}
+
+<div class="collection record">
+    <div class="title">
+        <a href="{{ .RelPermalink }}">
+            {{ if $thumbnailResource }}
+            <img class="image" src="{{ $thumbnailResource.RelPermalink }}">
+            {{ end }}
+            {{ .LinkTitle }}
+        </a>
+    </div>
+    {{ with .Params.description }}
+    <p class="collection-description">{{ . }}</p>
+    {{ end }}
+</div>
+
+{{ end }}
